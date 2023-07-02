@@ -3,9 +3,9 @@ from bs4 import BeautifulSoup
 import requests
 
 # Set up the Pyrogram client
-api_id = 123456  # Replace with your own API ID
-api_hash = "YOUR_API_HASH"  # Replace with your own API hash
-bot_token = "YOUR_BOT_TOKEN"  # Replace with your own bot token
+api_id = 17737898  # Replace with your own API ID
+api_hash = "ad762fe0516f367115ba651d929cf429"  # Replace with your own API hash
+bot_token = "5771926112:AAEBetnNf9hkNyUVCnHVMlgqMAsCItmYwdM"  # Replace with your own bot token
 
 app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
 
