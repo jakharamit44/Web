@@ -21,9 +21,9 @@ def fetch(url):
             urls.append("https://" + url.split("/")[2] +tmp)
     return urls
 
-bot_token = os.environ.get("TOKEN", "")
-api_hash = os.environ.get("HASH", "") 
-api_id = os.environ.get("ID", "")
+bot_token = os.environ.get("TOKEN", "5771926112:AAEBetnNf9hkNyUVCnHVMlgqMAsCItmYwdM")
+api_hash = os.environ.get("HASH", "ad762fe0516f367115ba651d929cf429") 
+api_id = os.environ.get("ID", "17737898")
 app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)  
 
 @app.on_message(filters.text)
