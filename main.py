@@ -4,6 +4,11 @@ import os
 import requests
 from bs4 import BeautifulSoup
 
+bot_token = os.environ.get("TOKEN", "5771926112:AAEBetnNf9hkNyUVCnHVMlgqMAsCItmYwdM")
+api_hash = os.environ.get("HASH", "ad762fe0516f367115ba651d929cf429") 
+api_id = os.environ.get("ID", "17737898")
+app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)  
+
 def fetch(url):
     sess = requests.session()
     while 1:
@@ -18,13 +23,9 @@ def fetch(url):
     for link in soup.find_all('a'): 
         tmp = link.get('href')
         if tmp is not None and "view_video" in tmp:
-            urls.append("https://" + url.split("/")[2] +tmp)
-    return urls
-
-bot_token = os.environ.get("TOKEN", "5771926112:AAEBetnNf9hkNyUVCnHVMlgqMAsCItmYwdM")
-api_hash = os.environ.get("HASH", "ad762fe0516f367115ba651d929cf429") 
-api_id = os.environ.get("ID", "17737898")
-app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)  
+            urls.append("https://" + url.split("/")[2] + tmp)
+    res = [*set(urls)]
+    return res
 
 @app.on_message(filters.text)
 def receive(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
