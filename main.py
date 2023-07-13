@@ -14,6 +14,7 @@ def fetch(url):
     while 1:
         try:
             reqs = sess.get(url)
+            print("Connected")
             break
         except: print("Retrying")
 
@@ -23,9 +24,11 @@ def fetch(url):
     for link in soup.find_all('a'): 
         tmp = link.get('href')
         if tmp is not None and "view_video" in tmp:
-            urls.append("https://" + url.split("/")[2] + tmp)
-    res = [*set(urls)]
-    return res
+            if "https://" not in tmp:
+                ttmp = "https://" + url.split("/")[2] + tmp
+            else: ttmp = tmp
+            if ttmp not in urls: urls.append(ttmp)
+    return urls
 
 @app.on_message(filters.text)
 def receive(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
@@ -34,7 +37,7 @@ def receive(client: pyrogram.client.Client, message: pyrogram.types.messages_and
     final = []
     tmp = ""
     for ele in res:
-        tmp += ele + "\n"
+        tmp += ele + "\n\n"
         if len(tmp) > 3950:
             final.append(tmp)
             tmp = ""
